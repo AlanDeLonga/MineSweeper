@@ -1,0 +1,158 @@
+
+<html>
+	<head>
+		<script type="text/javascript" src="minesweeper1.js"></script>
+		<link rel="stylesheet" href="menu.css" type="text/css" />
+		<title> Alan D Mine Sweeper</title>
+		  <meta property="og:title" content="Alan D Mine Sweeper"/>
+		  <meta property="og:type" content="website"/>
+		  <meta property="og:image" content="http://frompointatobeyond.com/FB_apps/imgs/cal_poly.jpg"/>
+		  <meta property="og:url" content="https://frompointatobeyondco.ipage.com/mineSweeper/index.html"/> <!-- put your site URL here -->
+		  <meta property="og:site_name" content="Alan D Mine Sweeper"/>
+		  <meta property="fb:app_id" content="168093459977180"> <!-- Replace app id with your own-->
+		  <meta property="og:description" content="Simple mine sweeper game in javascript"/>
+	</head>
+
+	<body>
+		<div id="fb-root"></div>
+		<script>
+		  window.fbAsyncInit = function() {
+			FB.init({
+			  appId      : '168093459977180', // App ID
+			  status     : true, // check login status
+			  cookie     : true, // enable cookies to allow the server to access the session
+			  xfbml      : true  // parse XFBML
+			});
+
+			// Additional initialization code here
+		  };
+
+		  // Load the SDK Asynchronously
+		  (function(d){
+			 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement('script'); js.id = id; js.async = true;
+			 js.src = "//connect.facebook.net/en_US/all.js";
+			 ref.parentNode.insertBefore(js, ref);
+		   }(document));
+
+
+           // assume we are already logged in
+           FB.init({appId: '168093459977180', xfbml: true, cookie: true, oauth: true});
+
+           FB.login({
+              scope: 'email,user_birthday',
+           });
+		</script>
+		<!--
+			<button type="button" onClick="restart()">Restart</button>
+			<button type="button" onClick="saveGame()">Save Game</button>
+			<button type="button" onClick="window.location='index.html?load=1'">Load Game</button>
+			<button type="button" onClick="flagMine()">Find A Mine</button>
+			<button type="button" onClick="flagTile()">Toggle Flagging</button>
+		
+		<div id="menuBar">
+			<ul id="menu">
+			  <li><a href="" onClick="restart()">Restart</a></li>
+			  <li><a href="">Game Difficulty</a>
+				<ul>
+				<li><a href="" onClick="window.location='index.html?bombs=10&dim=8'">Easy</a></li>
+				<li><a href="" onClick="window.location='index.html?bombs=40&dim=16'">Novice</a></li>
+				<li><a href="" onClick="window.location='index.html?bombs=80&dim=32'">Expert</a></li>
+				</ul>
+			  </li>
+			  <li><a href="">Products</a>
+				<ul>
+				<li><a href="">Cozy Couch</a></li>
+				<li><a href="">Great Table</a></li>
+				<li><a href="">Small Chair</a></li>
+				<li><a href="">Shiny Shelf</a></li>
+				<li><a href="">Invisible Nothing</a></li>
+				</ul>
+			  </li>
+			  <li><a href="">Contact</a>
+				<ul>
+				<li><a href="">Online</a></li>
+				<li><a href="">Right Here</a></li>
+				<li><a href="">Somewhere Else</a></li>
+				</ul>
+			  </li>
+			</ul>
+		</div>
+		-->
+		<div align="center" >
+		<script language="javascript" type="text/javascript">
+			var cellNum = 0;
+			var imgSrc;
+			
+			document.write('<div><h3 style="display: inline;" id="timer">Time:  0</h3>&nbsp;&nbsp;&nbsp;');
+			document.write('<img id="gameState" src="face.jpg" height="30px" onclick="checkBoard()">&nbsp;&nbsp;&nbsp;&nbsp;');
+			document.write('<h3 style="display: inline;" id="curFlag"> Flags: '+(totalBombs-curFlag)+'</h3></div>');
+			document.write('<center><table id="gameBoard" border="1">');
+
+			//loop for rows
+			for (j=0;j<height;j++)
+			{
+				document.write('<tr>');
+				//loop for columns
+
+				for (i=0;i<height;i++)
+				{	
+					cellNum = (height*j)+i;
+					
+					if(load == 1){
+						if(selectedCells.indexOf((cellNum))!= -1){
+							imgSrc = cells[cellNum]+".jpg";
+							document.write('<td> <img id="cell'+cellNum+'" src="'+imgSrc+'" onclick="switchImg('+cellNum+')"></td>');							
+						}
+						else if(flagged.indexOf((cellNum))!= -1 ){							
+							document.write('<td> <img id="cell'+cellNum+'" src="flag.jpg" onclick="switchImg('+cellNum+')"></td>');							
+						}
+						else{
+							document.write('<td> <img id="cell'+cellNum+'" src="cell.jpg" onclick="switchImg('+cellNum+')"></td>');
+						}
+					}else{
+						document.write('<td> <img id="cell'+cellNum+'" src="cell.jpg" onclick="switchImg('+cellNum+')"></td>');
+					}
+				}
+				document.write('</tr>');
+			}
+			
+			document.write('</table></center>');
+
+		</script> 
+			<button type="button" onClick="restart()">Restart</button>
+			<button type="button" onClick="saveGame()">Save Game</button>
+			<button type="button" onClick="window.location='index.html?load=1'">Load Game</button>
+			<button type="button" onClick="flagMine()">Find A Mine</button>
+			<button type="button" onClick="flagTile()">Toggle Flagging</button>
+			<form action="index.html">
+				<select name="bombs">
+					<optgroup label="Bombs">
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+					<option value="30">30</option>
+					<option value="35">35</option>
+					<option value="40">40</option>	
+					<option value="45">45</option>	
+					<option value="50">50</option>	
+					<option value="55">55</option>	
+					<option value="60">60</option>
+					</optgroup>
+				</select>	
+				<select name="dim">
+					<optgroup label="Board dimmension">
+					<option value="8">8x8</option>
+					<option value="12">12x12</option>
+					<option value="16">16x16</option>
+					<option value="24">24x24</option>
+					<option value="32">32x32</option>
+					</optgroup>
+				</select>	
+				<input type="submit" value="New Game" />
+			</form>	
+		</div>
+	</body>
+</html>
