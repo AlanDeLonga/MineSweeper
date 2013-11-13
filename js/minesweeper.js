@@ -65,13 +65,13 @@ function reload(){
 		
 		document.getElementById("timer").innerHTML = "Time:  "+time;
 		document.getElementById("curFlag").innerHTML = "Flags: "+(totalBombs-curFlag);
-		document.getElementById("gameState").src = "face.jpg";
+		document.getElementById("gameState").src = "img/face.jpg";
 		initArray();
 		setBombs();
 		setNums();
 
 		for(h=0; h <= cells.length; h++ ){
-			document.getElementById("cell"+h).src = "cell.jpg";
+			document.getElementById("cell"+h).src = "img/cell.jpg";
 		}	
 	}
 	else{
@@ -165,7 +165,7 @@ function loadArrays(select, flag, bomb, cell){
 function switchImg(idx) {
 
 	var id = "cell"+idx;
-	var src = cells[idx]+".jpg";
+	var src = "img/"+cells[idx]+".jpg";
 	
 	if(firstClick == 0){
 		doTimer();
@@ -186,10 +186,10 @@ function switchImg(idx) {
 				gameState = 1;
 				for(i=0; i<cells.length; i++){
 					if(cells[i] == 'b' ){
-						document.getElementById("cell"+i).src = "b.jpg";
+						document.getElementById("cell"+i).src = "img/b.jpg";
 					}
 				}
-				document.getElementById("gameState").src = "die.jpg";
+				document.getElementById("gameState").src = "img/die.jpg";
 				
 				stopCount();
 				alert("Oh no!... you died");
@@ -208,14 +208,14 @@ function switchImg(idx) {
 				document.getElementById(id).src = src;
 				
 				if(cells[idx] == 0){
-					document.getElementById(id).src = "0.jpg";
+					document.getElementById(id).src = "img/0.jpg";
 					cascadeOpen(idx);
 				}
 				
 				if(selectedCells.length == (cells.length - bombs.length)){
 					var i;
 					for(i=0; i<bombs.length; i++){
-						document.getElementById("cell"+bombs[i]).src = "flag.jpg";
+						document.getElementById("cell"+bombs[i]).src = "img/flag.jpg";
 					}
 					gameState = 2;
 					
@@ -232,7 +232,7 @@ function switchImg(idx) {
 			curFlag++;
 			flagged[newFlag] = idx;
 			updateFlags();
-			document.getElementById(id).src = "flag.jpg";
+			document.getElementById(id).src = "img/flag.jpg";
 		}
 	}
 	return false;
@@ -437,7 +437,7 @@ function cascadeOpen(idx) {
 		if(typeof checkedCells[i] === "undefined"){}
 		else{			
 			id = "cell"+checkedCells[i];
-			document.getElementById(id).src = "0.jpg";
+			document.getElementById(id).src = "img/0.jpg";
 			
 			oldFlag = flagged.indexOf(checkedCells[i]);
 			
@@ -461,7 +461,7 @@ function cascadeOpen(idx) {
 		else{			
 			id = "cell"+numberCells[i];
 			
-			document.getElementById(id).src = cells[numberCells[i]]+".jpg";
+			document.getElementById(id).src = "img/"+cells[numberCells[i]]+".jpg";
 			
 			oldFlag = flagged.indexOf(numberCells[i]);
 			
@@ -503,7 +503,7 @@ function checkBoard(){
 		}
 		else{
 			gameState = 1;
-			document.getElementById("gameState").src = "die.jpg";
+			document.getElementById("gameState").src = "img/die.jpg";
 			alert("Oops! You didn't flag the right tiles :X");
 			stopCount();
 		}
@@ -554,7 +554,7 @@ function flagMine(){
 			curFlag++;
 			updateFlags();
 			
-			document.getElementById(id).src = "flag.jpg";
+			document.getElementById(id).src = "img/flag.jpg";
 			
 			curCheat++;	
 			cheatIdx++;

@@ -1,13 +1,13 @@
 
 <html>
 	<head>
-		<script type="text/javascript" src="minesweeper1.js"></script>
+		<script type="text/javascript" src="js/minesweeper.js"></script>
 		<link rel="stylesheet" href="menu.css" type="text/css" />
 		<title> Alan D Mine Sweeper</title>
 		  <meta property="og:title" content="Alan D Mine Sweeper"/>
 		  <meta property="og:type" content="website"/>
 		  <meta property="og:image" content="http://frompointatobeyond.com/FB_apps/imgs/cal_poly.jpg"/>
-		  <meta property="og:url" content="https://frompointatobeyondco.ipage.com/mineSweeper/index.html"/> <!-- put your site URL here -->
+		  <meta property="og:url" content="https://frompointatobeyondco.ipage.com/mineSweeper/index.html"/> 
 		  <meta property="og:site_name" content="Alan D Mine Sweeper"/>
 		  <meta property="fb:app_id" content="168093459977180"> <!-- Replace app id with your own-->
 		  <meta property="og:description" content="Simple mine sweeper game in javascript"/>
@@ -44,42 +44,6 @@
               scope: 'email,user_birthday',
            });
 		</script>
-		<!--
-			<button type="button" onClick="restart()">Restart</button>
-			<button type="button" onClick="saveGame()">Save Game</button>
-			<button type="button" onClick="window.location='index.html?load=1'">Load Game</button>
-			<button type="button" onClick="flagMine()">Find A Mine</button>
-			<button type="button" onClick="flagTile()">Toggle Flagging</button>
-		
-		<div id="menuBar">
-			<ul id="menu">
-			  <li><a href="" onClick="restart()">Restart</a></li>
-			  <li><a href="">Game Difficulty</a>
-				<ul>
-				<li><a href="" onClick="window.location='index.html?bombs=10&dim=8'">Easy</a></li>
-				<li><a href="" onClick="window.location='index.html?bombs=40&dim=16'">Novice</a></li>
-				<li><a href="" onClick="window.location='index.html?bombs=80&dim=32'">Expert</a></li>
-				</ul>
-			  </li>
-			  <li><a href="">Products</a>
-				<ul>
-				<li><a href="">Cozy Couch</a></li>
-				<li><a href="">Great Table</a></li>
-				<li><a href="">Small Chair</a></li>
-				<li><a href="">Shiny Shelf</a></li>
-				<li><a href="">Invisible Nothing</a></li>
-				</ul>
-			  </li>
-			  <li><a href="">Contact</a>
-				<ul>
-				<li><a href="">Online</a></li>
-				<li><a href="">Right Here</a></li>
-				<li><a href="">Somewhere Else</a></li>
-				</ul>
-			  </li>
-			</ul>
-		</div>
-		-->
 		<div align="center" >
 		<script language="javascript" type="text/javascript">
 			var cellNum = 0;
@@ -102,17 +66,17 @@
 					
 					if(load == 1){
 						if(selectedCells.indexOf((cellNum))!= -1){
-							imgSrc = cells[cellNum]+".jpg";
+							imgSrc = "img/"+cells[cellNum]+".jpg";
 							document.write('<td> <img id="cell'+cellNum+'" src="'+imgSrc+'" onclick="switchImg('+cellNum+')"></td>');							
 						}
 						else if(flagged.indexOf((cellNum))!= -1 ){							
-							document.write('<td> <img id="cell'+cellNum+'" src="flag.jpg" onclick="switchImg('+cellNum+')"></td>');							
+							document.write('<td> <img id="cell'+cellNum+'" src="img/flag.jpg" onclick="switchImg('+cellNum+')"></td>');							
 						}
 						else{
-							document.write('<td> <img id="cell'+cellNum+'" src="cell.jpg" onclick="switchImg('+cellNum+')"></td>');
+							document.write('<td> <img id="cell'+cellNum+'" src="img/cell.jpg" onclick="switchImg('+cellNum+')"></td>');
 						}
 					}else{
-						document.write('<td> <img id="cell'+cellNum+'" src="cell.jpg" onclick="switchImg('+cellNum+')"></td>');
+						document.write('<td> <img id="cell'+cellNum+'" src="img/cell.jpg" onclick="switchImg('+cellNum+')"></td>');
 					}
 				}
 				document.write('</tr>');
